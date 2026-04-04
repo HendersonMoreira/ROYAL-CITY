@@ -126,9 +126,11 @@ CreateThread(function()
 					DoorSystemSetDoorState(DoorId,1,false,false)
 					DoorSystemSetOpenRatio(DoorId,0.0,false,true)
 					DoorSystemSetAutomaticDistance(DoorId,0.0,false,true)
+					SyncDoorEntity(v,true,5.0)
 				else
 					DoorSystemSetDoorState(DoorId,0,false,false)
 					DoorSystemSetAutomaticDistance(DoorId,0.0,false,true)
+					SyncDoorEntity(v,false,5.0)
 				end
 			end
 		end
