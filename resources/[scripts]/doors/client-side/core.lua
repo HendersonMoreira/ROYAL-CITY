@@ -11,24 +11,47 @@ vSERVER = Tunnel.getInterface("doors")
 -----------------------------------------------------------------------------------------------------------------------------------------
 local Display = {}
 
-local function SyncDoorEntity(v,locked,radius)
+local function GetDoorEntities(v,radius)
 	local SearchRadius = radius or math.max(2.0,v["Distance"] + 1.0)
-	local Entity = GetClosestObjectOfType(v["Coords"].x,v["Coords"].y,v["Coords"].z,SearchRadius,v["Hash"],false,false,false)
-	if not DoesEntityExist(Entity) then
+	local Hash = tonumber(v["Hash"]) or 0
+	local Hashes = { Hash, math.abs(Hash), -math.abs(Hash) }
+	local Added = {}
+	local Entities = {}
+
+	if v["ExtraHashes"] then
+		for _,ExtraHash in ipairs(v["ExtraHashes"]) do
+			table.insert(Hashes,tonumber(ExtraHash) or 0)
+		end
+	end
+
+	for _,Model in ipairs(Hashes) do
+		if Model ~= 0 and not Added[Model] then
+			Added[Model] = true
+			local Entity = GetClosestObjectOfType(v["Coords"].x,v["Coords"].y,v["Coords"].z,SearchRadius,Model,false,false,false)
+			if DoesEntityExist(Entity) then
+				table.insert(Entities,Entity)
+			end
+		end
+	end
+
+	return Entities
+end
+
+local function SyncDoorEntity(v,locked,radius)
+	local Entities = GetDoorEntities(v,radius)
+	if #Entities <= 0 then
 		return
 	end
 
-	if locked then
-		SetEntityAsMissionEntity(Entity,true,false)
-		SetEntityCollision(Entity,true,true)
-		SetEntityCoordsNoOffset(Entity,v["Coords"].x,v["Coords"].y,v["Coords"].z,false,false,false)
-		if v["Heading"] then
-			SetEntityHeading(Entity,v["Heading"])
+	for _,Entity in ipairs(Entities) do
+		if locked then
+			SetEntityAsMissionEntity(Entity,true,false)
+			SetEntityCollision(Entity,true,true)
+			FreezeEntityPosition(Entity,true)
+		else
+			FreezeEntityPosition(Entity,false)
+			SetEntityAsNoLongerNeeded(Entity)
 		end
-		FreezeEntityPosition(Entity,true)
-	else
-		FreezeEntityPosition(Entity,false)
-		SetEntityAsNoLongerNeeded(Entity)
 	end
 end
 -----------------------------------------------------------------------------------------------------------------------------------------
