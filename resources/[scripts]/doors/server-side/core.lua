@@ -86,6 +86,10 @@ GlobalState["Doors"] = {
 	["70"] = { ["Coords"] = vec3(1313.46,1189.24,106.88), ["Hash"] = -1825581873, ["Disabled"] = false, ["Lock"] = true, ["Distance"] = 1.75, ["Perm"] = "Medellin" }, --Medellin portas 
 	-- ["71"] = { ["Coords"] = vec3(-2039.63,-490.11,12.11), ["Hash"] = 1411506275, ["Disabled"] = false, ["Lock"] = true, ["Distance"] = 50.75, ["Perm"] = "Mecanica" },
 
+	-- BOPE (sem tranca)
+	["80"] = { ["Coords"] = vec3(-429.53,1109.31,327.68), ["Hash"] = -1860071468, ["Disabled"] = true, ["Lock"] = false, ["Distance"] = 1.75 },
+	["81"] = { ["Coords"] = vec3(-429.53,1109.31,327.68), ["Hash"] = 1114264700, ["Disabled"] = true, ["Lock"] = false, ["Distance"] = 1.75 },
+
 }
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- PERMISSION
