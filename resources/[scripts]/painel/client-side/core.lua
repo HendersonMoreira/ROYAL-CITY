@@ -11,9 +11,18 @@ Creative = {}
 Tunnel.bindInterface("painel",Creative)
 vSERVER = Tunnel.getInterface("painel")
 -----------------------------------------------------------------------------------------------------------------------------------------
+-- THEME
+-----------------------------------------------------------------------------------------------------------------------------------------
+local CurrentPermission = ""
+local GroupThemes = {
+	["Paramedico"] = "#2ECC71"
+}
+-----------------------------------------------------------------------------------------------------------------------------------------
 -- OPEN
 -----------------------------------------------------------------------------------------------------------------------------------------
 function Creative.Open(Data)
+	CurrentPermission = tostring(Data[1] or "")
+
 	SetNuiFocus(true,true)
 	SetCursorLocation(0.5,0.5)
 	SendNUIMessage({ Action = "Open", Payload = Data })
@@ -21,9 +30,23 @@ function Creative.Open(Data)
 	vRP.CreateObjects("amb@code_human_in_bus_passenger_idles@female@tablet@idle_a","idle_a","prop_cs_tablet",49,28422,-0.05,0.0,0.0,0.0,0.0, 0.0)
 end
 -----------------------------------------------------------------------------------------------------------------------------------------
+-- THEME
+-----------------------------------------------------------------------------------------------------------------------------------------
+RegisterNUICallback("Theme",function(Data,Callback)
+	local Theme = GroupThemes[CurrentPermission]
+
+	if Theme then
+		Callback({ ["main"] = Theme })
+	else
+		Callback(false)
+	end
+end)
+-----------------------------------------------------------------------------------------------------------------------------------------
 -- CLOSE
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterNUICallback("Close",function(Data,Callback)
+	CurrentPermission = ""
+
 	SetNuiFocus(false,false)
 	vRP.Destroy()
 
