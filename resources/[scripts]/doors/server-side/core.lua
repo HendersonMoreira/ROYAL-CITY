@@ -88,8 +88,8 @@ GlobalState["Doors"] = {
 
 	-- BOPE
 	["80"] = { ["Coords"] = vec3(-429.53,1109.31,327.68), ["Hash"] = -1860071468, ["Heading"] = 170.08, ["Disabled"] = false, ["Lock"] = true, ["Distance"] = 1.75, ["Perm"] = "BOPE" },
-	["81"] = { ["Coords"] = vec3(-426.89,1101.37,327.68), ["Hash"] = 1114264700, ["Heading"] = 0.0, ["Disabled"] = false, ["Lock"] = true, ["Distance"] = 1.75, ["Perm"] = "BOPE" },
-	["82"] = { ["Coords"] = vec3(-435.42,1103.66,327.68), ["Hash"] = 1114264700, ["Heading"] = 180.0, ["Disabled"] = false, ["Lock"] = true, ["Distance"] = 1.75, ["Perm"] = "BOPE" },
+	["81"] = { ["Coords"] = vec3(-426.89,1101.37,327.68), ["Hash"] = 1114264700, ["Heading"] = 85.04, ["Disabled"] = false, ["Lock"] = true, ["Distance"] = 1.75, ["Perm"] = "BOPE" },
+	["82"] = { ["Coords"] = vec3(-435.42,1103.66,327.68), ["Hash"] = 1114264700, ["Heading"] = 252.29, ["Disabled"] = false, ["Lock"] = true, ["Distance"] = 1.75, ["Perm"] = "BOPE" },
 	["83"] = { ["Coords"] = vec3(-409.95,1077.64,323.85), ["Hash"] = 991901429, ["Heading"] = 340.16, ["Disabled"] = false, ["Lock"] = true, ["Distance"] = 1.75, ["Perm"] = "BOPE" },
 	["84"] = { ["Coords"] = vec3(-419.52,1087.71,323.85), ["Hash"] = 991901429, ["Heading"] = 0.0, ["Disabled"] = false, ["Lock"] = true, ["Distance"] = 1.75, ["Perm"] = "BOPE" },
 	["85"] = { ["Coords"] = vec3(-416.71,1086.99,323.85), ["Hash"] = 991901429, ["Heading"] = 343.0, ["Disabled"] = false, ["Lock"] = true, ["Distance"] = 1.75, ["Perm"] = "BOPE" },
