@@ -90,6 +90,11 @@ GlobalState["Doors"] = {
 	["80"] = { ["Coords"] = vec3(-429.53,1109.31,327.68), ["Hash"] = -1860071468, ["Disabled"] = true, ["Lock"] = false, ["Distance"] = 1.75 },
 	["81"] = { ["Coords"] = vec3(-429.53,1109.31,327.68), ["Hash"] = 1114264700, ["Disabled"] = true, ["Lock"] = false, ["Distance"] = 1.75 },
 
+	-- BOPE portoes externos
+	["89"] = { ["Coords"] = vec3(-385.87,1180.41,325.64), ["Hash"] = -150919444, ["Heading"] = 76.54, ["ForceClosed"] = true, ["Disabled"] = false, ["Lock"] = true, ["Distance"] = 10.0, ["Perm"] = "BOPE" },
+	["90"] = { ["Coords"] = vec3(-430.62,1193.06,325.66), ["Hash"] = 725274945, ["Heading"] = 255.12, ["Disabled"] = false, ["Lock"] = true, ["Distance"] = 7.0, ["Perm"] = "BOPE" },
+	["91"] = { ["Coords"] = vec3(-384.97,1235.29,325.86), ["Hash"] = 725274945, ["Heading"] = 136.07, ["Disabled"] = false, ["Lock"] = true, ["Distance"] = 7.0, ["Perm"] = "BOPE" },
+
 }
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- PERMISSION

@@ -56,7 +56,7 @@ Citizen.CreateThread(function()
                                 segundos = 5
     
                                 if vSERVER.checkPermission(v.perm, v.hierarchy) then
-                                    vSERVER.getItensArmazem(k)
+                                    vSERVER.getItensArmazem(v.type or k)
                                 else
                                     config.lang['notPermiss']()
                                 end
@@ -66,7 +66,7 @@ Citizen.CreateThread(function()
                                 segundos = 5
     
                                 if vSERVER.checkPermission(v.perm, v.hierarchy) then
-                                    vSERVER.guardarItensArmazem(k)
+                                    vSERVER.guardarItensArmazem(v.type or k)
                                 else
                                     config.lang['notPermiss']()
                                 end

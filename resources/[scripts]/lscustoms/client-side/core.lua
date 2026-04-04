@@ -734,8 +734,6 @@ CreateThread(function()
 						TimeDistance = 1
 
 						if IsControlJustPressed(1,38) and vSERVER.Permission(Index) then
-							SetEntityCoords(Vehicle,v["Coords"]["xyz"])
-							SetEntityHeading(Vehicle,v["Coords"]["w"])
 							Open(Vehicle,v["Logo"])
 						end
 					end

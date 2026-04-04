@@ -32,8 +32,9 @@
         "products": [
           {
             "id": 7,
-            "name": "Frango Frito",
-            "description": "Porção de 200gr de frango frito.",
+            "name": "ookies",
+            "name": "cookies",
+            "description": "Porção de 200gr",
             "price": 34,
             "section": "Lanches",
             "image": "https://cdn.discordapp.com/attachments/1178023840358617158/1178069511858040922/chickenfries.png?ex=6574cdbb&is=656258bb&hm=a23347e9fc5fa7c12f9402a8379d42807396d9aeab9e8cb665de4e88da403bff&",
@@ -43,13 +44,13 @@
           },
           {
             "id": 8,
-            "name": "Cola",
+            "name": "Café",
             "description": "",
             "price": 20,
             "section": "Bebidas",
             "image": "https://cdn.discordapp.com/attachments/1178023840358617158/1178069511623151676/cola.png?ex=6574cdbb&is=656258bb&hm=c2e790881c0338bf092affed2fef911070baa2e455fde65b543577c1e20acd97&",
             "items": {
-              "cola": 1
+              "coffeecup": 1
             }
           },
           {
@@ -88,13 +89,13 @@
           },
           {
             "id": 205,
-            "name": "Energético",
+            "name": "Soda",
             "description": "",
             "price": 1000,
             "section": "Bebidas",
             "image": "https://cdn.discordapp.com/attachments/1178023840358617158/1178069945700077578/energetic.png?ex=6574ce22&is=65625922&hm=8bcab93357a0c74179f0881c5d72c986a5507526d9ce806771aab24f011ec30d&",
             "items": {
-              "energetic": 1
+              "soda": 1
             }
           }
         ]
@@ -106,11 +107,11 @@
         "category_id": 1,
         "price": 1,
         "fee": 15,
-        "location": [-1183.71,-884.36,13.8],
+        "location": [-1858.82,-1197.05,13.93],
         "products": [
           {
             "id": 1,
-            "name": "Cheeseburguer",
+            "name": "hamburger",
             "description": "Pão, hambúrguer, queijo cheddar, picles e ketckup.",
             "price": 40,
             "section": "Lanches",
@@ -138,7 +139,7 @@
             "section": "Lanches",
             "image": "https://cdn.discordapp.com/attachments/1178023840358617158/1178069511858040922/chickenfries.png?ex=6574cdbb&is=656258bb&hm=a23347e9fc5fa7c12f9402a8379d42807396d9aeab9e8cb665de4e88da403bff&",
             "items": {
-              "chickenfries": 1
+              "fries": 1
             }
           }
         ] 

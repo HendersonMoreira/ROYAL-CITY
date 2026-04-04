@@ -32,8 +32,8 @@ local Chests = {
 	{ ["Name"] = "ElementsMembro", ["Coords"] = vec3(733.19,1301.98,360.55), ["Mode"] = "4" },
 	{ ["Name"] = "TurquiaLider", ["Coords"] = vec3(1547.57,-724.81,121.05), ["Mode"] = "2" },
 	{ ["Name"] = "TurquiaMembro", ["Coords"] = vec3(1308.6,-794.53,79.03), ["Mode"] = "4" },
-	{ ["Name"] = "BlackDiamondLider", ["Coords"] = vec3(-3225.92,811.56,8.93,31.19), ["Mode"] = "2" },
-	{ ["Name"] = "BlackDiamondMembro", ["Coords"] = vec3(-3219.66,778.4,8.26,127.56), ["Mode"] = "4" }
+	{ ["Name"] = "BlackDiamondLider", ["Coords"] = vec3(-3225.92,811.56,8.93), ["Mode"] = "2" },
+	{ ["Name"] = "BlackDiamondMembro", ["Coords"] = vec3(-3219.66,778.4,8.26), ["Mode"] = "4" }
 }
 
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -120,7 +120,7 @@ end
 
 local function OpenChestDynamic(Name)
 	exports["dynamic"]:AddMenu("Baú","Escolha o compartimento.","chest")
-	exports["dynamic"]:AddButton("Baú Normal","Abrir compartimento membro.","chest:dynamicOpen",Name.."-Normal","chest",false)
+	exports["dynamic"]:AddButton("Baú Membros","Abrir compartimento membro.","chest:dynamicOpen",Name.."-Normal","chest",false)
 	exports["dynamic"]:AddButton("Baú Pessoal","Abrir compartimento pessoal.","chest:dynamicOpen",Name.."-Personal","chest",false)
 	exports["dynamic"]:Open()
 end

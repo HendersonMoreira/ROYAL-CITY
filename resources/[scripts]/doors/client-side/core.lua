@@ -59,7 +59,7 @@ CreateThread(function()
 		DoorSystemSetOpenRatio(DoorId,0.0,false,true)
 		DoorSystemSetAutomaticDistance(DoorId,0.0,false,true)
 		DoorSystemSetAutomaticRate(DoorId,5.0,false,true)
-		DoorSystemSetDoorState(DoorId,v["Lock"] and 1 or 0,true)
+		DoorSystemSetDoorState(DoorId,v["Lock"] and 4 or 0,true)
 
 		SyncDoorEntity(v,v["Lock"],3.5)
 	end
@@ -73,7 +73,7 @@ AddStateBagChangeHandler("Doors",nil,function(Name,Key,Value)
 		DoorSystemSetOpenRatio(DoorId,0.0,false,true)
 		DoorSystemSetAutomaticDistance(DoorId,0.0,false,true)
 		DoorSystemSetAutomaticRate(DoorId,5.0,false,true)
-		DoorSystemSetDoorState(DoorId,v["Lock"] and 1 or 0,true)
+		DoorSystemSetDoorState(DoorId,v["Lock"] and 4 or 0,true)
 
 		SyncDoorEntity(v,v["Lock"],3.5)
 
@@ -82,7 +82,7 @@ AddStateBagChangeHandler("Doors",nil,function(Name,Key,Value)
 			DoorSystemSetOpenRatio(OtherDoorId,0.0,false,true)
 			DoorSystemSetAutomaticDistance(OtherDoorId,0.0,false,true)
 			DoorSystemSetAutomaticRate(OtherDoorId,5.0,false,true)
-			DoorSystemSetDoorState(OtherDoorId,v["Lock"] and 1 or 0,true)
+			DoorSystemSetDoorState(OtherDoorId,v["Lock"] and 4 or 0,true)
 		end
 
 		if Display[Number] then
@@ -135,7 +135,7 @@ CreateThread(function()
 				local DoorId = tonumber(Number) or Number
 
 				if v["Lock"] then
-					DoorSystemSetDoorState(DoorId,1,false,false)
+					DoorSystemSetDoorState(DoorId,4,false,false)
 					DoorSystemSetOpenRatio(DoorId,0.0,false,true)
 					DoorSystemSetAutomaticDistance(DoorId,0.0,false,true)
 					SyncDoorEntity(v,true,5.0)

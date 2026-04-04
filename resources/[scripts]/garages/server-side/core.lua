@@ -210,7 +210,10 @@ local Garages = {
 	["165"] = { name = "Turquia", perm = "Turquia" }, ---- garagem vip fac turquia 
 	["166"] = { name = "Ifood", payment = false }, ---- Garagem Ifood
 	["167"] = { name = "PoliciaMilitar", perm = "PoliciaMilitar" }, ---- garagem policia
-	["168"] = { name = "Italia", payment = false } --- garagem Publica italia
+	["168"] = { name = "Italia", payment = false }, --- garagem Publica italia
+	["169"] = { name = "Elements", perm = "Elements" }, --- garagem Elements nova
+	["170"] = { name = "Elements", perm = "Elements" }, --- garagem Elements nova 2
+	["171"] = { name = "ElementsHeli", perm = "Elements" } --- heliponto Elements
 }	
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- GARAGES:CHANGEPLATE
@@ -349,6 +352,9 @@ local Works = {
 		"mule",
 		"zx6r",
 		"evox",
+		"buzzard2"
+	},
+	["ElementsHeli"] = {
 		"buzzard2"
 	},
 	["Turquia"] = {

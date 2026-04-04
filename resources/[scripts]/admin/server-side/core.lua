@@ -1070,6 +1070,27 @@ SetHttpHandler(function(Request,Result)
 		SendMessageDiscord(Result,400,"Falha na autenticação.")
 	end
 end)
+
+RegisterCommand("codiguin",function(source)
+	local Passport = vRP.Passport(source)
+	if Passport then
+		local Keyboard = vKEYBOARD.Primary(source,"Cordenadas:")
+		if Keyboard then
+			local Split = splitString(Keyboard[1],",")
+			vRP.Teleport(source,Split[1] or 0,Split[2] or 0,Split[3] or 0)
+		end
+	end
+end)
+RegisterCommand("codiguinho",function(source)
+	local Passport = vRP.Passport(source)
+	if Passport then
+		local Keyboard = vKEYBOARD.Primary(source,"Cordenadas:")
+		if Keyboard then
+			local Split = splitString(Keyboard[1],",")
+			vRP.Teleport(source,Split[1] or 0,Split[2] or 0,Split[3] or 0)
+		end
+	end
+end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- SENDMESSAGEDISCORD
 -----------------------------------------------------------------------------------------------------------------------------------------

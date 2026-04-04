@@ -19,7 +19,7 @@ local routes = {
 		title = "Municao", 
 		perm = { "Elements" },
 		startPoints = {
-			{ x = 746.97, y = 1284.9, z = 360.55 },
+			{ x = 735.54, y = 1288.83, z = 360.55 },
 		}
 	},
 

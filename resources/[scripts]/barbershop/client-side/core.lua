@@ -149,17 +149,18 @@ function OpenBarbershop(Mode)
 	Lasted = json.decode(json.encode(Barbershop))
 
 	local Heading = GetEntityHeading(Ped)
-	local PedCoords = GetEntityCoords(Ped)
-	local Coords = GetOffsetFromEntityInWorldCoords(Ped,-0.05,1.20,0.60)
+	local HeadCoords = GetPedBoneCoords(Ped,31086,0.0,0.0,0.0)
+	local Coords = GetOffsetFromEntityInWorldCoords(Ped,0.45,0.95,0.65)
 
 	Camera = CreateCam("DEFAULT_SCRIPTED_CAMERA",true)
 	SetCamCoord(Camera,Coords.x,Coords.y,Coords.z)
-	SetCamRot(Camera,0.0,0.0,Heading + 200.0,2)
+	SetCamRot(Camera,0.0,0.0,Heading + 180.0,2)
+	SetCamFov(Camera,42.0)
 	SetCamActive(Camera,true)
 	RenderScriptCams(true,false,0,false,false)
 
 	SetEntityHeading(Ped,Heading)
-	PointCamAtCoord(Camera,PedCoords.x,PedCoords.y,PedCoords.z + 0.55)
+	PointCamAtCoord(Camera,HeadCoords.x,HeadCoords.y,HeadCoords.z + 0.02)
 
 	Default = Coords.z
 
@@ -173,6 +174,21 @@ function OpenBarbershop(Mode)
 	})
 
 	SetNuiFocus(true,true)
+
+	CreateThread(function()
+		while DoesCamExist(Camera) do
+			if not IsEntityVisible(Ped) then
+				SetEntityVisible(Ped,true,false)
+			end
+
+			if GetEntityAlpha(Ped) < 255 then
+				SetEntityAlpha(Ped,255,false)
+			end
+
+			SetEntityLocallyVisible(Ped)
+			Wait(0)
+		end
+	end)
 end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- LOCATIONS
@@ -184,7 +200,8 @@ local Locations = {
 	vec3(1930.54,3732.06,32.85),
 	vec3(1214.2,-473.18,66.21),
 	vec3(-33.61,-154.52,57.08),
-	vec3(-276.65,6226.76,31.7)
+	vec3(-276.65,6226.76,31.7),
+	vec3(737.79,1285.14,364.12)
 }
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- THREADSERVERSTART

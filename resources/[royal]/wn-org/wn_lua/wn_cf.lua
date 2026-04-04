@@ -158,24 +158,6 @@ Config.Organizations = {
         }
     },
     
-    ["Policiafederal"] = {
-        name = "Policiafederal",
-        type = "Work",
-        maxMembers = 100,
-        initialMoney = 0,
-        radioFrequency = "190",
-        images = { radio = "images/radio.png", clothes ='',
-        permissions = { canEditMeta = 1, canChangeRoles = 3, canUseBank = 1, canChangePix = 1 },
-        disable = { disableMetas = false, disableFarm = false, disableRank = false },
-        hierarchy = {
-            [1] = { name = "Ministro", permissions = { "all" } },
-            [2] = { name = "Secretario", permissions = { "deposit","withdraw_medium","hire","fire","promote","demote" } },
-            [3] = { name = "Comandogeral", permissions = { "deposit","withdraw_small","hire","fire" } },
-            [4] = { name = "Comando", permissions = { "deposit","farm" } },
-            [5] = { name = "Subcomando", permissions = { "deposit","farm" } },
-            [6] = { name = "Major", permissions = { "deposit","farm" } },
-        }
-    },
     
     ["Acari"] = {
         name = "Acari",

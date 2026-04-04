@@ -753,9 +753,9 @@ end
 function vRP.HasService(Passport, Permission)
     local Passport = tostring(Passport)
 
-    if Groups[Permission] then
+    if Groups[Permission] and Groups[Permission]["Permission"] then
         for Index, _ in pairs(Groups[Permission]["Permission"]) do
-            if Groups[Index]["Service"][Passport] then
+            if Groups[Index] and Groups[Index]["Service"] and Groups[Index]["Service"][Passport] then
                 return true
             end
         end
