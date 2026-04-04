@@ -10,6 +10,27 @@ vSERVER = Tunnel.getInterface("doors")
 -- VARIABLES
 -----------------------------------------------------------------------------------------------------------------------------------------
 local Display = {}
+
+local function SyncDoorEntity(v,locked,radius)
+	local SearchRadius = radius or math.max(2.0,v["Distance"] + 1.0)
+	local Entity = GetClosestObjectOfType(v["Coords"].x,v["Coords"].y,v["Coords"].z,SearchRadius,v["Hash"],false,false,false)
+	if not DoesEntityExist(Entity) then
+		return
+	end
+
+	if locked then
+		SetEntityAsMissionEntity(Entity,true,false)
+		SetEntityCollision(Entity,true,true)
+		SetEntityCoordsNoOffset(Entity,v["Coords"].x,v["Coords"].y,v["Coords"].z,false,false,false)
+		if v["Heading"] then
+			SetEntityHeading(Entity,v["Heading"])
+		end
+		FreezeEntityPosition(Entity,true)
+	else
+		FreezeEntityPosition(Entity,false)
+		SetEntityAsNoLongerNeeded(Entity)
+	end
+end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- THREADSERVERSTART
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -27,6 +48,8 @@ CreateThread(function()
 		DoorSystemSetAutomaticDistance(DoorId,0.0,false,true)
 		DoorSystemSetAutomaticRate(DoorId,5.0,false,true)
 		DoorSystemSetDoorState(DoorId,v["Lock"] and 1 or 0,true)
+
+		SyncDoorEntity(v,v["Lock"],3.5)
 	end
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -39,6 +62,8 @@ AddStateBagChangeHandler("Doors",nil,function(Name,Key,Value)
 		DoorSystemSetAutomaticDistance(DoorId,0.0,false,true)
 		DoorSystemSetAutomaticRate(DoorId,5.0,false,true)
 		DoorSystemSetDoorState(DoorId,v["Lock"] and 1 or 0,true)
+
+		SyncDoorEntity(v,v["Lock"],3.5)
 
 		if v["Other"] then
 			local OtherDoorId = tonumber(v["Other"]) or v["Other"]
