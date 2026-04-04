@@ -95,7 +95,7 @@ CreateThread(function()
 				local DoorId = tonumber(Number) or Number
 
 				if v["Lock"] then
-					DoorSystemSetDoorState(DoorId,4,false,false)
+					DoorSystemSetDoorState(DoorId,1,false,false)
 					DoorSystemSetOpenRatio(DoorId,0.0,false,true)
 				else
 					DoorSystemSetDoorState(DoorId,0,false,false)
