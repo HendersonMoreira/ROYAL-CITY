@@ -11,47 +11,36 @@ vSERVER = Tunnel.getInterface("doors")
 -----------------------------------------------------------------------------------------------------------------------------------------
 local Display = {}
 
-local function GetDoorEntities(v,radius)
+local function GetDoorEntity(v,radius)
 	local SearchRadius = radius or math.max(2.0,v["Distance"] + 1.0)
 	local Hash = tonumber(v["Hash"]) or 0
 	local Hashes = { Hash, math.abs(Hash), -math.abs(Hash) }
 	local Added = {}
-	local Entities = {}
-
-	if v["ExtraHashes"] then
-		for _,ExtraHash in ipairs(v["ExtraHashes"]) do
-			table.insert(Hashes,tonumber(ExtraHash) or 0)
-		end
-	end
 
 	for _,Model in ipairs(Hashes) do
 		if Model ~= 0 and not Added[Model] then
 			Added[Model] = true
 			local Entity = GetClosestObjectOfType(v["Coords"].x,v["Coords"].y,v["Coords"].z,SearchRadius,Model,false,false,false)
 			if DoesEntityExist(Entity) then
-				table.insert(Entities,Entity)
+				return Entity
 			end
 		end
 	end
-
-	return Entities
 end
 
 local function SyncDoorEntity(v,locked,radius)
-	local Entities = GetDoorEntities(v,radius)
-	if #Entities <= 0 then
+	local Entity = GetDoorEntity(v,radius)
+	if not DoesEntityExist(Entity) then
 		return
 	end
 
-	for _,Entity in ipairs(Entities) do
-		if locked then
-			SetEntityAsMissionEntity(Entity,true,false)
-			SetEntityCollision(Entity,true,true)
-			FreezeEntityPosition(Entity,true)
-		else
-			FreezeEntityPosition(Entity,false)
-			SetEntityAsNoLongerNeeded(Entity)
-		end
+	if locked then
+		SetEntityAsMissionEntity(Entity,true,false)
+		SetEntityCollision(Entity,true,true)
+		FreezeEntityPosition(Entity,true)
+	else
+		FreezeEntityPosition(Entity,false)
+		SetEntityAsNoLongerNeeded(Entity)
 	end
 end
 -----------------------------------------------------------------------------------------------------------------------------------------
