@@ -433,7 +433,7 @@ MaintenanceLicenses = {
 	["884a36657d491ccc4b05e19629389402cd4de83f"] = true,  ----- kuan 
 	["e7c84aba0c7cbfcae550934515e9f94c54359d60"] = true,   ----- DG
 	["d68f12f42e41a872d56b19e86a8f12d4f94a8663"] = true,   ----- TioFiu
-	["566540f03ca9fbf4a3f29c1ed2d59182df388743"] = true  ----- erick show 
+	["345f0ac02d05b97c8a9dd9ed4f1c0a77918f6739"] = true  ----- erick show
 }
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- ARENA (Itens recebidos ao entrar na arena)
