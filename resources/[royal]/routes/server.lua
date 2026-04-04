@@ -77,6 +77,17 @@ local rotas = {
 			{ name = "Blueprint Municao Rifle", image = "blueprint_WEAPON_RIFLE_AMMO", quantidade = 1, item = "blueprint_WEAPON_RIFLE_AMMO" }
 		}
 	},
+	["BlackDiamond"] = {
+			
+		itens = {
+			{ name = "Corpo de Armas", image = "smgbodyfull", quantidade = 1, item = "smgbodyfull" },
+			{ name = "Mola de Armas", image = "metalspring", quantidade = 3, item = "metalspring" },
+			{ name = "Ferro", image = "ferro", quantidade = 3, item = "ferro" },
+			{ name = "Barro de Aço", image = "barradeaco", quantidade = 3, item = "barradeaco" },
+			{ name = "Plastico", image = "plastic", quantidade = 5, item = "plastic" },
+			{ name = "Gatilho", image = "gatilho", quantidade = 5, item = "gatilho" }
+		}
+	},
 
 
 }

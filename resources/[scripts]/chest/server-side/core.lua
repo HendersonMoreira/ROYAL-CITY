@@ -235,6 +235,22 @@ local Chests = {
 		["Slots"] = 50,
 		["Mode"] = "4",
 		["Save"] = true
+	},
+	["BlackDiamondLider"] = {
+		["Permission"] = { "BlackDiamond" },
+		["Hierarchy"] = 2,
+		["Weight"] = 10000,
+		["Slots"] = 50,
+		["Mode"] = "2",
+		["Save"] = true
+	},
+	["TurquiaMembroMembro"] = {
+		["Permission"] = { "BlackDiamond" },
+		["Hierarchy"] = 6,
+		["Weight"] = 10000,
+		["Slots"] = 50,
+		["Mode"] = "4",
+		["Save"] = true
 	}
 }
 

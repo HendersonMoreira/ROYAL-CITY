@@ -748,7 +748,7 @@ config.craftLocations = {
     [2] = { type = "Ballas", perm = "Ballas", hierarchy = 1, isDominas = nil, coords = vec3(  93.39,-1964.67,20.74 ), visible = 2.0 },
     [3] = { type = "Medellin", perm = "Medellin", hierarchy = 3, isDominas = nil, coords = vec3( 1414.11,1107.87,114.81 ), visible = 2.0 },
     [4] = { type = "Barragem", perm = "Barragem", hierarchy = 3, isDominas = nil, coords = vec3( 1227.99,-249.71,79.62), visible = 2.0 },
-    [5] = { type = "Elements", perm = "Elements", hierarchy = 3, isDominas = nil, coords = vec3( -1703.77,946.58,177.61), visible = 2.0 },
+    [5] = { type = "Elements", perm = "Elements", hierarchy = 3, isDominas = nil, coords = vec3( 716.34,1294.24,356.61), visible = 2.0 },
     [6] = { type = "Distrito22", perm = "Distrito22", hierarchy = 3, isDominas = nil, coords = vec3( -1760.83,-201.95,57.79), visible = 2.0 },
     [7] = { type = "Turquia", perm = "Turquia", hierarchy = 3, isDominas = nil, coords = vec3( 1352.09,-678.26,78.79), visible = 2.0 }
 
