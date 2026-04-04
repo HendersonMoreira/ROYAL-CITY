@@ -10,27 +10,6 @@ vSERVER = Tunnel.getInterface("doors")
 -- VARIABLES
 -----------------------------------------------------------------------------------------------------------------------------------------
 local Display = {}
-
-local function SyncDoorEntity(v,locked,radius)
-	local SearchRadius = radius or math.max(2.0,v["Distance"] + 1.0)
-	local Entity = GetClosestObjectOfType(v["Coords"].x,v["Coords"].y,v["Coords"].z,SearchRadius,v["Hash"],false,false,false)
-	if not DoesEntityExist(Entity) then
-		return
-	end
-
-	if locked then
-		SetEntityAsMissionEntity(Entity,true,false)
-		SetEntityCollision(Entity,true,true)
-		SetEntityCoordsNoOffset(Entity,v["Coords"].x,v["Coords"].y,v["Coords"].z,false,false,false)
-		if v["Heading"] then
-			SetEntityHeading(Entity,v["Heading"])
-		end
-		FreezeEntityPosition(Entity,true)
-	else
-		FreezeEntityPosition(Entity,false)
-		SetEntityAsNoLongerNeeded(Entity)
-	end
-end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- THREADSERVERSTART
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -48,8 +27,6 @@ CreateThread(function()
 		DoorSystemSetAutomaticDistance(DoorId,0.0,false,true)
 		DoorSystemSetAutomaticRate(DoorId,5.0,false,true)
 		DoorSystemSetDoorState(DoorId,v["Lock"] and 1 or 0,true)
-
-		SyncDoorEntity(v,v["Lock"],3.5)
 	end
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -62,8 +39,6 @@ AddStateBagChangeHandler("Doors",nil,function(Name,Key,Value)
 		DoorSystemSetAutomaticDistance(DoorId,0.0,false,true)
 		DoorSystemSetAutomaticRate(DoorId,5.0,false,true)
 		DoorSystemSetDoorState(DoorId,v["Lock"] and 1 or 0,true)
-
-		SyncDoorEntity(v,v["Lock"],3.5)
 
 		if v["Other"] then
 			local OtherDoorId = tonumber(v["Other"]) or v["Other"]
@@ -122,17 +97,13 @@ CreateThread(function()
 			if not v["Disabled"] and #(Coords - v["Coords"]) <= (v["Distance"] + 15.0) then
 				local DoorId = tonumber(Number) or Number
 
-				local LockRadius = math.max(3.5,v["Distance"] + 2.0)
-
 				if v["Lock"] then
 					DoorSystemSetDoorState(DoorId,1,false,false)
 					DoorSystemSetOpenRatio(DoorId,0.0,false,true)
 					DoorSystemSetAutomaticDistance(DoorId,0.0,false,true)
-					SyncDoorEntity(v,true,LockRadius)
 				else
 					DoorSystemSetDoorState(DoorId,0,false,false)
 					DoorSystemSetAutomaticDistance(DoorId,0.0,false,true)
-					SyncDoorEntity(v,false,LockRadius)
 				end
 			end
 		end
