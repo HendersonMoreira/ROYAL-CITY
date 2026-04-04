@@ -26,6 +26,14 @@ CreateThread(function()
 		DoorSystemSetOpenRatio(DoorId,0.0,false,true)
 		DoorSystemSetAutomaticRate(DoorId,5.0,false,true)
 		DoorSystemSetDoorState(DoorId,v["Lock"] and 1 or 0,true)
+
+		if v["Lock"] then
+			local Entity = GetClosestObjectOfType(v["Coords"].x,v["Coords"].y,v["Coords"].z,3.5,v["Hash"],false,false,false)
+			if DoesEntityExist(Entity) then
+				SetEntityAsMissionEntity(Entity,true,false)
+				FreezeEntityPosition(Entity,true)
+			end
+		end
 	end
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -37,6 +45,17 @@ AddStateBagChangeHandler("Doors",nil,function(Name,Key,Value)
 		DoorSystemSetOpenRatio(DoorId,0.0,false,true)
 		DoorSystemSetAutomaticRate(DoorId,5.0,false,true)
 		DoorSystemSetDoorState(DoorId,v["Lock"] and 1 or 0,true)
+
+		local Entity = GetClosestObjectOfType(v["Coords"].x,v["Coords"].y,v["Coords"].z,3.5,v["Hash"],false,false,false)
+		if DoesEntityExist(Entity) then
+			if v["Lock"] then
+				SetEntityAsMissionEntity(Entity,true,false)
+				FreezeEntityPosition(Entity,true)
+			else
+				SetEntityAsNoLongerNeeded(Entity)
+				FreezeEntityPosition(Entity,false)
+			end
+		end
 
 		if v["Other"] then
 			local OtherDoorId = tonumber(v["Other"]) or v["Other"]
@@ -94,17 +113,21 @@ CreateThread(function()
 			if not v["Disabled"] and #(Coords - v["Coords"]) <= (v["Distance"] + 15.0) then
 				local DoorId = tonumber(Number) or Number
 
+				local LockRadius = math.max(3.5,v["Distance"] + 2.0)
+				local Entity = GetClosestObjectOfType(v["Coords"].x,v["Coords"].y,v["Coords"].z,LockRadius,v["Hash"],false,false,false)
+
 				if v["Lock"] then
 					DoorSystemSetDoorState(DoorId,1,false,false)
 					DoorSystemSetOpenRatio(DoorId,0.0,false,true)
+					if DoesEntityExist(Entity) then
+						SetEntityAsMissionEntity(Entity,true,false)
+						FreezeEntityPosition(Entity,true)
+					end
 				else
 					DoorSystemSetDoorState(DoorId,0,false,false)
-				end
-
-				local LockRadius = math.max(3.5,v["Distance"] + 2.0)
-				for _,Entity in pairs(GetGamePool("CObject")) do
-					if GetEntityModel(Entity) == v["Hash"] and #(GetEntityCoords(Entity) - v["Coords"]) <= LockRadius then
-						FreezeEntityPosition(Entity,v["Lock"])
+					if DoesEntityExist(Entity) then
+						SetEntityAsNoLongerNeeded(Entity)
+						FreezeEntityPosition(Entity,false)
 					end
 				end
 			end
