@@ -118,6 +118,8 @@ end)
 -- DRIVE
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterNUICallback("Drive",function(Data,Callback)
+	Callback("Ok")
+
 	if vSERVER.Check() then
 		if IsScreenFadedIn() then
 			DoScreenFadeOut(0)
@@ -131,7 +133,15 @@ RegisterNUICallback("Drive",function(Data,Callback)
 				DeleteEntity(Mount)
 			end
 
-			Mount = CreateVehicle(Data["vehicle"],TestDriveCoords,false,false)
+			Mount = CreateVehicle(Data["vehicle"],TestDriveCoords["x"],TestDriveCoords["y"],TestDriveCoords["z"],TestDriveCoords["w"],false,false)
+			if not DoesEntityExist(Mount) then
+				vSERVER.Remove()
+				LocalPlayer["state"]:set("Commands",false,true)
+				LocalPlayer["state"]:set("TestDrive",false,false)
+				TriggerEvent("Notify","Aviso","Não foi possível iniciar o teste drive.","amarelo",5000)
+				TriggerEvent("hud:Active",true)
+				return
+			end
 
 			SetVehicleModKit(Mount,0)
 			SetVehicleDirtLevel(Mount,0.0)
@@ -159,20 +169,22 @@ RegisterNUICallback("Drive",function(Data,Callback)
 				end
 			end)
 
-			while true do
-				local Ped = PlayerPedId()
-				if not IsPedInAnyVehicle(Ped) then
-					if IsScreenFadedIn() then
-						DoScreenFadeOut(0)
-					end
+			CreateThread(function()
+				while LocalPlayer["state"]["TestDrive"] do
+					local Ped = PlayerPedId()
+					if not IsPedInAnyVehicle(Ped) then
+						if IsScreenFadedIn() then
+							DoScreenFadeOut(0)
+						end
 
-					vSERVER.Remove()
-					SetEntityCoords(Ped,TestDriveReturn["xyz"])
-					LocalPlayer["state"]:set("Commands",false,true)
-					LocalPlayer["state"]:set("TestDrive",false,false)
+						vSERVER.Remove()
+						SetEntityCoords(Ped,TestDriveReturn["x"],TestDriveReturn["y"],TestDriveReturn["z"],false,false,false,false)
+						LocalPlayer["state"]:set("Commands",false,true)
+						LocalPlayer["state"]:set("TestDrive",false,false)
 
-					if DoesEntityExist(Mount) then
-						DeleteEntity(Mount)
+						if DoesEntityExist(Mount) then
+							DeleteEntity(Mount)
+						end
 
 						SetTimeout(2500,function()
 							if IsScreenFadedOut() then
@@ -182,14 +194,12 @@ RegisterNUICallback("Drive",function(Data,Callback)
 
 						break
 					end
-				end
 
-				Wait(1)
-			end
+					Wait(250)
+				end
+			end)
 		end
 	end
-
-	Callback("Ok")
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- PDM:CLOSE
