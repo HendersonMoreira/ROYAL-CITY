@@ -1,0 +1,14 @@
+artifacts/
+cache/
+.replxx_history
+server.cfg
+db/
+resources/\[carro\]/
+resources/discord-screenshot/
+resources/ThnAC/
+resources/webpack/
+resources/yarn/
+server.bat
+txdata/
+resources/\[maps\]/
+resources/\[roupas\]/

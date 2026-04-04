@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Lavagem</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app" style="display: none;">
+        <div class="tablet-wrapper">
+            <img src="tabletfundo.png" class="tablet-frame" alt="Tablet">
+
+            <div class="tablet-screen">
+                <div id="loadingScreen" class="loading-screen">
+                    <div class="loading-box">
+                        <div class="loading-spinner"></div>
+                        <h1>SISTEMA DE LAVAGEM</h1>
+                        <p>Aguarde enquanto o sistema é inicializado...</p>
+                    </div>
+                </div>
+
+                <div id="mainPanel" class="main-panel hidden">
+                    <div class="header">
+                        <div class="header-left">
+                            <h1 id="title">SISTEMA DE LAVAGEM</h1>
+                            <p id="subtitle">Painel de Lavagem de Dinheiro</p>
+                        </div>
+
+                        <button id="closeBtn" class="close-btn">×</button>
+                    </div>
+
+                    <div class="content">
+                        <div class="card">
+                            <div class="section-title">Valor para Lavagem</div>
+
+                            <input type="number" id="amount" placeholder="Digite a quantidade">
+
+                            <div class="info-row">
+                                <span>Item:</span>
+                                <strong id="fromLabel">-</strong>
+                            </div>
+
+                            <div class="info-row">
+                                <span>Mínimo:</span>
+                                <strong id="minAmount">0</strong>
+                            </div>
+
+                            <div class="info-row">
+                                <span>Múltiplo:</span>
+                                <strong id="stepAmount">0</strong>
+                            </div>
+
+                            <div class="info-row">
+                                <span>Item exigido:</span>
+                                <strong id="requiredItemLabel">Nenhum</strong>
+                            </div>
+
+                            <div class="info-row">
+                                <span>Consumo:</span>
+                                <strong id="requiredItemAmount">0</strong>
+                            </div>
+                        </div>
+
+                        <div class="card receive-card">
+                            <div class="section-title">Você vai receber</div>
+
+                            <div class="receive-box">
+                                <span id="receiveAmount">0</span>
+                            </div>
+
+                            <div class="info-row">
+                                <span>Item:</span>
+                                <strong id="toLabel">-</strong>
+                            </div>
+
+                            <div class="info-row">
+                                <span>Taxa:</span>
+                                <strong id="rateInfo">0</strong>
+                            </div>
+
+                            <div class="info-row">
+                                <span>Status:</span>
+                                <strong id="statusText">Aguardando valor...</strong>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="footer">
+                        <button id="previewBtn" class="btn btn-light">CALCULAR</button>
+                        <button id="exchangeBtn" class="btn btn-primary">CONFIRMAR</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+{
+    "token": "",
+    "client": {
+        "bankType": "fleeca",
+        "uploadServer": "https://api.fivemanage.com/api/image?apiKey=hxiPpsDuPVtYd1ABx6uIb6Hi1VIuJvC3",
+        "allowUnsafeURL": true,
+        "videoServer": "ws://localhost:8080/",
+        "case": "iphone14pro",
+        "apps": {
+            "casino": "images/blaze.png"
+        },
+        "isAndroid": false,
+        "useGameClock": false,
+        "phone_template": "XXX-XXX",
+        "backgroundURL": "images/wallpaper.png",
+        "disabledApps": []
+    },
+    "exclusive": {
+        "weazel": {
+            "tags": [
+                "Noticias"
+            ],
+            "permission": "Admin"
+        },
+        "casino": {
+            "maxBet": 100000
+        }
+    },
+    "call_mode": "pma-voice",
+    "webhookURL": "https://discord.com/api/webhooks/1336310456931057694/xcstJJ8fx705K3Fr1FRZ1mTDknXxZz6vvpHYLJfBX0UWxDq2QwHny-DudjJiSz3Zvf5H",
+    "instagram_verify": [
+        "Admin",
+        "Premium"
+    ],
+    "weazel_tags": "Admin",
+    "instagram_accounts": {
+        "*": 1,
+        "Admin": 2
+    },
+    "moderator": "Admin",
+    "item": "cellphone",
+    "tor_blocked": [
+        "Policia"
+    ],
+    "services": [
+        {
+            "name": "Polícia",
+            "number": "191",
+            "permission": "Policia",
+            "dev": true
+        },
+        {
+            "name": "Hospital",
+            "number": "192",
+            "permission": "Paramedico",
+            "dev": true
+        },
+        {
+            "name": "Mecânica",
+            "number": "0800 042",
+            "permission": "Mecanico",
+            "dev": true
+        },
+        {
+            "name": "Prefeitura",
+            "number": "0800 222",
+            "permission": "Admin",
+            "dev": true
+        }
+    ],
+    "base": "creative_rework",
+    "channel": "stable"
+}

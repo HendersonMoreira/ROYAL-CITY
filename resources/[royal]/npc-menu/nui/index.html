@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Menu de NPC</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Escolha um NPC</h1>
+    <div class="npc-grid">
+        <button class="npc-button" onclick="selectNPC('u_m_y_zombie_01')">
+          <img src="images/naruto.png" alt="Naruto">
+          <div class="npc-label">Naruto</div>
+        </button>
+        <button class="npc-button" onclick="selectNPC('a_m_m_acult_01')">
+          <img src="images/a_m_m_acult_01.png" alt="Sung Jin Woo">
+          <div class="npc-label">Sung Jin Woo</div>
+        </button>
+        <button class="npc-button" onclick="selectNPC('u_m_m_jesus_01')">
+          <img src="images/spiderMan.png" alt="Spider man">
+          <div class="npc-label">Homem Aranha</div>
+        </button>
+        
+        <button class="npc-button locked" onclick="openPasswordModal('a_m_m_eastsa_02')">
+          <div class="lock-icon">🔒</div>
+          <img src="images/a_m_m_eastsa_02.png" alt="Tio Patinhas">
+          <div class="npc-label">Tio Patinhas</div>
+        </button>
+
+        <button class="npc-button locked" onclick="openPasswordModal('AdolecenteRebeldeFiveXStore')">
+          <div class="lock-icon">🔒</div>
+          <img src="images/adolescente.png" alt="Adolescente Rebelde">
+          <div class="npc-label">Adolescente Rebelde</div>
+        </button>
+
+        <button class="npc-button locked" onclick="openPasswordModal('a_m_m_fatlatin_01')">
+          <div class="lock-icon">🔒</div>
+          <img src="images/gordaotrem.png" alt="Gordão Trem">
+          <div class="npc-label">Gordão Trem</div>
+        </button>
+      </div>
+
+    <div class="menu-actions">
+      <button onclick="originalSkin()">Voltar à skin original</button>
+      <button onclick="closeMenu()">Fechar</button>
+    </div>
+
+    <div class="admin-panel">
+      <h3>Painel Administrativo: Setar em Outro Jogador</h3>
+      <div class="admin-inputs">
+        <input type="number" id="targetId" placeholder="ID (Passaporte)">
+        
+        <select id="targetModel">
+          <option value="" disabled selected>Escolha o NPC...</option>
+          <option value="u_m_y_zombie_01">Naruto</option>
+          <option value="a_m_m_acult_01">Sung Jin Woo</option>
+          <option value="u_m_m_jesus_01">Homem Aranha</option>
+        </select>
+        
+        <input type="number" id="targetTime" placeholder="Tempo (Min)">
+      </div>
+      <button class="admin-btn" onclick="setSkinTarget()">Aplicar Skin no Jogador</button>
+    </div>
+
+    <div id="passwordModal" class="modal-hidden">
+      <div class="modal-content">
+        <h3>🔒 NPC Restrito</h3>
+        <p>Digite a senha para acessar:</p>
+        <input type="password" id="npcPassword" placeholder="Senha secreta">
+        <div class="modal-buttons">
+          <button class="confirm-btn" onclick="verifyPassword()">Desbloquear</button>
+          <button class="cancel-btn" onclick="closePasswordModal()">Cancelar</button>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

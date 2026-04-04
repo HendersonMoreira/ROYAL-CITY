@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Police Tablet</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="tablet">
+        <img src="img/tablet.png" class="frame" alt="Tablet">
+
+        <div class="screen">
+            <div class="lockscreen" id="lockscreen">
+                <div class="lock-overlay">
+                    <div class="lock-top">
+                        <div class="lock-weekday" id="lockWeekday">Domingo</div>
+                    </div>
+
+                    <div class="lock-center">
+                        <div class="lock-time" id="lockTime">00:00</div>
+                        <div class="lock-date" id="lockDate">00/00/0000</div>
+                    </div>
+
+                    <div class="lock-bottom">
+                        <div class="lock-hint" onclick="unlockTablet()">Clique para desbloquear</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="loading" id="loading">
+                <div class="loading-overlay">
+                    <div class="spinner"></div>
+                    <div class="loading-title" id="loadingTitle">Abrindo terminal policial</div>
+                    <div class="loading-subtitle" id="loadingSubtitle">Sincronizando dados operacionais...</div>
+                </div>
+            </div>
+
+            <div class="content" id="content">
+                <div class="content-bg"></div>
+
+                <div class="status-bar">
+                    <div class="status-left">
+                        <span id="policeBadge" class="police-badge">POLÍCIA</span>
+                        <span id="policeName" class="police-name">Corporação</span>
+                    </div>
+                    <div class="status-right">
+                        <span id="topbarTime" class="topbar-time">00:00</span>
+                        <button class="topbar-close" onclick="closeTablet()">Fechar</button>
+                    </div>
+                </div>
+
+                <div class="layout">
+                    <aside class="sidebar">
+                        <div class="sidebar-user">
+                            <div class="avatar" id="userAvatar">PM</div>
+                            <div>
+                                <div class="user-name" id="userName">Operador</div>
+                                <div class="user-role" id="userRole">Cargo</div>
+                            </div>
+                        </div>
+
+                        <button class="nav-btn active" data-tab="dashboard">Dashboard</button>
+                        <button class="nav-btn" data-tab="members">Membros</button>
+                        <button class="nav-btn" data-tab="bank">Banco</button>
+                                                <button class="nav-btn" data-tab="boletins">Boletins</button>
+                        <button class="nav-btn" data-tab="procurados">Procurados</button>
+                        <button class="nav-btn" data-tab="person">Consulta pessoal</button>
+                        <button class="nav-btn" data-tab="prison">Prisão / apreensão</button>
+                        <button class="nav-btn" data-tab="vehicle">Consulta veicular</button>
+                        <button class="nav-btn" data-tab="articles">Código penal</button>
+                    </aside>
+
+                    <main class="main-content">
+                        <section class="tab active" id="tab-dashboard">
+                            <div class="cards-grid dashboard-grid">
+                                <div class="card metric-card">
+                                    <div class="card-label">Saldo do banco</div>
+                                    <div class="metric-value" id="bankBalance">R$ 0</div>
+                                    <div class="metric-sub">Caixa da corporação</div>
+                                </div>
+                                <div class="card metric-card">
+                                    <div class="card-label">Policiais em patrulha</div>
+                                    <div class="metric-value" id="patrolCount">0</div>
+                                    <div class="metric-sub">Operacionais agora</div>
+                                </div>
+                                <div class="card metric-card">
+                                    <div class="card-label">Policiais online</div>
+                                    <div class="metric-value" id="onlineCount">0</div>
+                                    <div class="metric-sub">Conectados na corporação</div>
+                                </div>
+                            </div>
+
+                            <div class="split-grid">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h3>Avisos</h3>
+                                    </div>
+                                    <div id="noticesList" class="stack-list"></div>
+
+                                    <div class="inline-form compact-form">
+                                        <input id="noticeTitle" type="text" placeholder="Título do aviso">
+                                        <textarea id="noticeContent" placeholder="Mensagem do aviso"></textarea>
+                                        <button class="primary-btn" onclick="createNotice()">Publicar aviso</button>
+                                    </div>
+                                </div>
+
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h3>Patrulha</h3>
+                                    </div>
+                                    <div id="patrolList" class="table-like"></div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section class="tab" id="tab-members">
+                            <div class="stack-grid full-height">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h3>Adicionar membro</h3>
+                                    </div>
+                                    <div class="inline-form member-inline-form">
+                                        <input id="memberPassport" type="number" min="1" placeholder="ID">
+                                        <button class="blue-btn member-action-btn" onclick="hireMember()">Contratar</button>
+                                        <button class="danger-btn member-action-btn" onclick="fireMember()">Exonerar</button>
+                                    </div>
+                                </div>
+                                <div class="card full-height">
+                                    <div class="card-header">
+                                        <h3>Lista de membros</h3>
+                                        <button class="secondary-btn" onclick="requestRefresh()">Atualizar</button>
+                                    </div>
+                                    <div id="membersTable" class="table-like"></div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section class="tab" id="tab-bank">
+                            <div class="split-grid bank-grid">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h3>Banco da corporação</h3>
+                                    </div>
+
+                                    <div class="bank-balance-box">
+                                        <div class="bank-balance-label">Saldo atual</div>
+                                        <div class="bank-balance-value" id="bankBalanceBox">R$ 0</div>
+                                    </div>
+
+                                    <div class="card-header bank-inner-header">
+                                        <h3>Movimentação</h3>
+                                    </div>
+
+                                    <div class="inline-form">
+                                        <input id="bankAmount" type="number" min="1" placeholder="Valor">
+                                        <input id="bankDescription" type="text" placeholder="Descrição da movimentação">
+                                        <input id="bankTransferPassport" type="number" min="1" placeholder="Passaporte para transferir">
+                                        <div class="button-row">
+                                            <button class="deposit-btn" onclick="depositBank()">Depositar</button>
+                                            <button class="withdraw-btn" onclick="withdrawBank()">Sacar</button>
+                                            <button class="transfer-btn" onclick="transferBank()">Transferir</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card">
+                                    <div class="card-header"><h3>Histórico</h3></div>
+                                    <div id="bankHistory" class="table-like"></div>
+                                </div>
+                            </div>
+                        </section>
+
+                        
+
+                        <section class="tab" id="tab-boletins">
+                            <div class="articles-layout">
+                                <div class="card">
+                                    <div class="card-header"><h3>Cadastrar boletim</h3></div>
+                                    <div class="inline-form">
+                                        <input id="boletimTitle" type="text" placeholder="Título de boletim">
+                                        <input id="boletimInvolved" type="text" placeholder="Envolvidos">
+                                        <input id="boletimOfficers" type="text" placeholder="Oficiais envolvidos">
+                                        <textarea id="boletimDescription" placeholder="Descrição do boletim"></textarea>
+                                        <div class="button-row">
+                                            <button id="boletimSubmitBtn" class="primary-btn" onclick="createBoletim()">Cadastrar boletim</button>
+                                            <button id="boletimCancelBtn" class="secondary-btn" onclick="cancelBoletimEdit()" style="display:none;">Cancelar edição</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card article-list-card">
+                                    <div class="card-header"><h3>Lista de boletins</h3></div>
+                                    <div id="boletinsTable" class="table-like"></div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section class="tab" id="tab-procurados">
+                            <div class="articles-layout wanted-layout">
+                                <div class="card">
+                                    <div class="card-header"><h3>Cadastrar procurado</h3></div>
+                                    <div class="inline-form wanted-form">
+                                        <input id="wantedPassport" type="number" placeholder="ID / passaporte" onblur="fetchWantedTarget()">
+                                        <div class="wanted-grid">
+                                            <input id="wantedName" type="text" placeholder="Nome" readonly>
+                                            <input id="wantedAge" type="text" placeholder="Idade" readonly>
+                                            <input id="wantedSex" type="text" placeholder="Sexo" readonly>
+                                            <input id="wantedPhone" type="text" placeholder="Telefone" readonly>
+                                        </div>
+                                        <div class="wanted-grid wanted-grid-bottom">
+                                            <select id="wantedDanger">
+                                                <option value="1">Periculosidade 1</option>
+                                                <option value="2">Periculosidade 2</option>
+                                                <option value="3">Periculosidade 3</option>
+                                            </select>
+                                            <input id="wantedPhotoInput" type="file" accept="image/*" onchange="handleWantedPhotoInput(event)">
+                                        </div>
+                                        <input id="wantedPhotoUrl" type="hidden">
+                                        <div id="wantedPhotoPreview" class="wanted-photo-preview">Sem foto</div>
+                                        <textarea id="wantedReason" placeholder="Motivo pelo qual é procurado"></textarea>
+                                        <div class="button-row">
+                                            <button id="wantedSubmitBtn" class="primary-btn" onclick="createProcurado()">Cadastrar procurado</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card article-list-card">
+                                    <div class="card-header"><h3>Lista de procurados</h3></div>
+                                    <div id="procuradosTable" class="table-like wanted-list"></div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section class="tab" id="tab-person">
+                            <div class="person-layout">
+                                <div class="card">
+                                    <div class="card-header"><h3>Consulta pessoal</h3></div>
+                                    <div class="inline-form person-search-form">
+                                        <input id="personPassport" type="number" placeholder="Passaporte">
+                                        <button class="primary-btn" onclick="consultPerson()">Consultar</button>
+                                    </div>
+                                </div>
+                                <div class="card person-result-card">
+                                    <div class="card-header"><h3>Resultado</h3></div>
+                                    <div id="personResult" class="details-box empty-state">Nenhuma consulta realizada.</div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section class="tab" id="tab-prison">
+                            <div class="split-grid search-grid person-grid-extended">
+                                <div class="card full-span-card">
+                                    <div class="card-header"><h3>Prisão / apreensão</h3></div>
+                                    <div class="inline-form prison-form">
+                                        <input id="prisonPassport" type="number" placeholder="Passaporte do suspeito">
+                                        <div class="prison-articles-box">
+                                            <div class="prison-articles-header">Selecionar artigos</div>
+                                            <div id="prisonArticlesList" class="prison-articles-list"></div>
+                                        </div>
+                                        <div class="prison-summary-grid">
+                                            <input id="additionalPrison" type="number" min="0" placeholder="Pena adicional (meses)">
+                                            <input id="additionalFine" type="number" min="0" placeholder="Multa adicional">
+                                            <input id="totalPrison" type="number" placeholder="Pena total" readonly>
+                                            <input id="totalFine" type="text" placeholder="Multa total" readonly>
+                                        </div>
+                                        <input id="seizureItemName" type="text" placeholder="Item apreendido">
+                                        <input id="seizureItemAmount" type="number" min="0" placeholder="Quantidade apreendida">
+                                        <textarea id="prisonObservation" placeholder="Observação / relato"></textarea>
+                                        <div class="button-row">
+                                            <button class="primary-btn" onclick="registerPrison()">Registrar prisão</button>
+                                            <button class="secondary-btn" onclick="registerSeizure()">Registrar apreensão</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section class="tab" id="tab-vehicle">
+                            <div class="person-layout vehicle-layout">
+                                <div class="card">
+                                    <div class="card-header"><h3>Consulta veicular</h3></div>
+                                    <div class="inline-form person-search-form vehicle-search-form">
+                                        <input id="vehicleSearch" type="text" placeholder="Placa ou modelo">
+                                        <button class="primary-btn" onclick="consultVehicle()">Consultar</button>
+                                    </div>
+                                </div>
+                                <div class="card person-result-card vehicle-result-card">
+                                    <div class="card-header"><h3>Resultado</h3></div>
+                                    <div id="vehicleResult" class="details-box empty-state">Nenhuma consulta realizada.</div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section class="tab" id="tab-articles">
+                            <div class="articles-layout">
+                                <div class="card">
+                                    <div class="card-header"><h3>Novo artigo</h3></div>
+                                    <div class="inline-form article-form">
+                                        <div class="article-form-row article-form-row-top">
+                                            <input id="articleCode" type="text" placeholder="Código / artigo">
+                                            <input id="articleTitle" type="text" placeholder="Título">
+                                        </div>
+                                        <div class="article-form-row article-form-row-bottom">
+                                            <input id="articleJail" type="number" placeholder="Prisão (meses)">
+                                            <input id="articleFine" type="number" placeholder="Multa">
+                                        </div>
+                                        <textarea id="articleDescription" placeholder="Descrição"></textarea>
+                                        <div class="button-row">
+                                            <button id="articleSubmitBtn" class="primary-btn" onclick="saveArticle()">Cadastrar artigo</button>
+                                            <button id="articleCancelBtn" class="secondary-btn" onclick="cancelArticleEdit()" style="display:none;">Cancelar edição</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card article-list-card">
+                                    <div class="card-header"><h3>Artigos cadastrados</h3></div>
+                                    <div id="articlesTable" class="table-like"></div>
+                                </div>
+                            </div>
+                        </section>
+                    </main>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

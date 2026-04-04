@@ -1,0 +1,86 @@
+endpoint_add_tcp "0.0.0.0:30120"
+endpoint_add_udp "0.0.0.0:30120"
+
+set mysql_connection_string "server=127.0.0.1;uid=root;password=;database=royal;port=3306;charset=utf8mb4"
+set mysql_transaction_isolation_level 2
+set mysql_slow_query_warning 100
+
+sv_enableNetworkedSounds false
+sv_filterRequestControl 4
+add_ace group.ThnAC command allow
+add_principal resource.ThnAC group.ThnAC
+
+#THUNDER ANTI-CHEAT
+ensure webpack
+ensure yarn
+ensure screenshot-basic
+ensure discord-screenshot
+ensure ThnAC
+
+
+start vrp
+start [system]
+start [scripts]
+#start [weapons]
+#start [roupas]
+start [outros]
+
+# MAPAS
+start [maps]
+#start [maps2]
+start cfx-lipenetwork
+start [royal]
+#start [carro]
+
+sv_scriptHookAllowed 0
+
+#rcon_password
+
+sets tags "rp, roleplaY, pvp, br, brasil, brazil, otimizado, fps, paris, tokyo, fusion, space, disney, infinity, fluxo, havana, kush, dubai, brazuka, nexus, capital, one, street, north, meta"
+
+sets locale "pt-BR"
+
+load_server_icon server.png
+
+#sv_master1 ""
+
+add_ace group.admin command allow
+add_ace group.admin command.quit deny
+add_principal identifier.steam:11000010c6d36de group.admin
+
+## [txAdmin CFG validator]: onesync MUST only be set in the txAdmin settings page.
+# set onesync on
+set sv_endpointprivacy false
+set onesync_population false
+set sv_enforceGameBuild 3407
+set onesync_forceMigration true
+set onesync_workaround763185 true
+set onesync_distanceCullVehicles true
+
+sets activitypubFeed RoyalCity2@mastodon.social
+
+
+sv_scriptHookAllowed 1
+
+setr profile_skfx 0
+setr voice_syncData 1
+##setr cl_customCrosshair false
+setr voice_useNativeAudio true
+setr voice_useSendingRangeOnly true
+
+sv_hostname "ROYAL"
+sets sv_projectName "ROYAL CITY"
+sets sv_projectDesc "Desenvolva sua historia, troque seu tiro e divirta-se"
+
+sets Grupo "ROYAL"
+sets Desenvolvedor "TREMBALA"
+sets Discord "https://discord.gg/royalcitygg"
+
+sets banner_detail "https://i.postimg.cc/FsmhgkLK/GIF_FIVEM_ROYAL.gif"
+sets banner_connecting "https://i.postimg.cc/CKZ0LjWN/GIF_FIVEM_CONNECT_ROYAL1.gif"
+
+sv_maxclients 2048
+
+set steam_webApiKey "7772100E2230758A1C80CC29062B13AC"
+
+sv_licenseKey "cfxk_1O3gcI2r2337sXaXoREXV_37XxVd"

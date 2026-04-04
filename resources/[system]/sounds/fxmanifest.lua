@@ -1,0 +1,20 @@
+shared_script "@ThnAC/natives.lua"
+thn_loaderInstalled "yes"
+client_script "thunder_anticheat.lua"
+fx_version "bodacious"
+game "gta5"
+lua54 "yes"
+
+ui_page "web-side/index.html"
+
+client_scripts {
+	"@vrp/config/Native.lua",
+	"@PolyZone/client.lua",
+	"@vrp/lib/Utils.lua",
+	"client-side/*"
+}
+
+files {
+	"web-side/*",
+	"web-side/**/*"
+}
