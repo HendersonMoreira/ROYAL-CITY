@@ -27,6 +27,12 @@ BatePontoConfig = {
             Name = "Bate Ponto Mecanico",
             Permission = "Mecanica",
             Coords = vector3(-2034.58,-510.56,12.13)
+        },
+        {
+            Name = "Bate Ponto BOPE",
+            Permission = { "BOPE", "bope" },
+            Coords = vector3(-431.89,1098.19,327.68),
+            Heading = 343.0
         }
     }
 }

@@ -316,6 +316,18 @@ Groups = {
 		["Markers"] = true,
 		["Chat"] = true
 	},
+	["BOPE"] = {
+		["Permission"] = {
+			["bope"] = true
+		},
+		["Hierarchy"] = { "Comandante","Sob Comando","Majo","Capitão","1 Tenent","2 Tenent","Aspirant","Subtenente","1 Sargento","2 Sargento","3 Sargento","Cabo","Soldado" },
+		["Salary"] = { 12000,11000,10000,9000,8000,7000,6000,5000,4500,4000,3500,3000,2500 },
+		["Service"] = {},
+		["Type"] = "Work",
+		["Client"] = true,
+		["Markers"] = true,
+		["Chat"] = true
+	},
 	["Policiafederal"] = {
 		["Permission"] = {
 			["Policiafederal"] = true
